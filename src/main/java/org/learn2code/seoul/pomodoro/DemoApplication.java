@@ -1,4 +1,4 @@
-package org.learntocode.seoul.pomodoro;
+package org.learn2code.seoul.pomodoro;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

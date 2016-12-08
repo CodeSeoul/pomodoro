@@ -1,4 +1,4 @@
-package org.learntocode.seoul.pomodoro;
+package org.learn2code.seoul.pomodoro;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

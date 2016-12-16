@@ -1,4 +1,4 @@
-package org.learn2code.seoul.pomodoro.user;
+package org.learn2code.seoul.pomodoro.user.domain;
 
 public class User {
 
@@ -44,6 +44,15 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"id=" + id +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				'}';
 	}
 
 }

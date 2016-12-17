@@ -41,7 +41,7 @@ public class UserRepositoryMockTest {
 	@Test
 	public void testFind(){
 		User foundUser = repo.find(2L);
-		System.out.println(foundUser);
+		//System.out.println(foundUser);
 		assertEquals(2L, foundUser.getId().longValue());
 		assertEquals("user2@ltcs.com", foundUser.getEmail());
 		assertEquals("pass", foundUser.getPassword());

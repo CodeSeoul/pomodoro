@@ -3,16 +3,18 @@ package org.learn2code.seoul.pomodoro.user.repository;
 import org.learn2code.seoul.pomodoro.user.domain.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserRepositoryMock implements UserRepository {
 
 	private long counter = 1;
-	private List<User> mockTable = new ArrayList<>();
+	private Map<Long, User> mockHashTable = new HashMap<>();
 
 	public UserRepositoryMock() {
 		for (int i = 0; i < 10; i++) {
-			mockTable.add(new User(counter, "user" + counter + "@ltcs.com", "pass"));
+			mockHashTable.put(counter, new User(counter, "user" + counter + "@ltcs.com", "pass"));
 			counter++;
 		}
 	}
@@ -20,42 +22,38 @@ public class UserRepositoryMock implements UserRepository {
 	@Override
 	public void create(User user) {
 		user.setId(counter);
+		mockHashTable.put(counter, user);
 		counter++;
-		mockTable.add(user);
 	}
 
 	@Override
 	public void modify(User user, Long id) {
-		User userToModify = find(id);
-		userToModify.setEmail(user.getEmail());
-		userToModify.setPassword(user.getPassword());
+		User foundUser = mockHashTable.get(id);
+		foundUser.setEmail(user.getEmail());
+		foundUser.setPassword(user.getPassword());
 	}
 
 	@Override
 	public void remove(Long id) {
-		User userToRemove = find(id);
-		mockTable.remove(userToRemove);
-	}
-
-	/*
-	TODO: We can do better than the linear search which runs in O(n).
-	 */
-	@Override
-	public User find(Long id) {
-		for (int i = 0; i < mockTable.size(); i++) {
-			System.out.println(mockTable.get(i));
-			if(mockTable.get(i).getId().longValue() == id){
-				return mockTable.get(i);
-			}
-		}
-		throw new RuntimeException("No data");
-	}
-
-	@Override
-	public List<User> findAll() {
-		if (mockTable.isEmpty()) {
+		if(!mockHashTable.containsKey(id)){
 			throw new RuntimeException("No data");
 		}
-		return mockTable;
+		mockHashTable.remove(id);
+	}
+
+	@Override
+	public User find(Long id) {
+		if(!mockHashTable.containsKey(id)){
+			throw new RuntimeException("No data");
+		}
+		return mockHashTable.get(id);
+	}
+
+	@Override
+	public List<User> findAll(){
+		if(!mockHashTable.isEmpty()){
+			return new ArrayList<>(mockHashTable.values());
+		}
+		throw new RuntimeException("No data");
 	}
 }

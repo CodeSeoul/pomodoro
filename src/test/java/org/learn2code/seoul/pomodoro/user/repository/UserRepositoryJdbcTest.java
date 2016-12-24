@@ -1,5 +1,7 @@
 package org.learn2code.seoul.pomodoro.user.repository;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.learn2code.seoul.pomodoro.user.domain.User;
 
@@ -10,6 +12,11 @@ import static org.junit.Assert.assertEquals;
 public class UserRepositoryJdbcTest {
 
 	private UserRepositoryJdbc repo = new UserRepositoryJdbc();
+
+	@Before
+	public void setUp() {
+		TestDataManager.initialize();
+	}
 
 	@Test
 	public void testFind(){
@@ -44,6 +51,11 @@ public class UserRepositoryJdbcTest {
 		assertEquals(11L, foundUser.getId().longValue());
 		assertEquals(user1.getEmail(), foundUser.getEmail());
 		assertEquals(user1.getPassword(), foundUser.getPassword());
+	}
+
+	@After
+	public void tearDown() {
+		TestDataManager.cleanUp();
 	}
 
 }

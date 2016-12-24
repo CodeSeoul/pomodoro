@@ -8,6 +8,7 @@ import org.learn2code.seoul.pomodoro.user.domain.User;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class UserRepositoryJdbcTest {
 
@@ -51,6 +52,32 @@ public class UserRepositoryJdbcTest {
 		assertEquals(11L, foundUser.getId().longValue());
 		assertEquals(user1.getEmail(), foundUser.getEmail());
 		assertEquals(user1.getPassword(), foundUser.getPassword());
+	}
+	@Test
+	public void testRemove() {
+		repo.find(7L);
+
+		repo.remove(7L);
+
+		try {
+			repo.find(7L);
+			fail();
+		} catch (Exception e) {
+			System.out.println(e);
+			assertEquals("No data", e.getMessage());
+		}
+	}
+
+	@Test
+	public void testModify() {
+		User modifiedUser = new User("dale@ltcs.com", "pass");
+		repo.modify(modifiedUser, 4L);
+
+		User foundUser = repo.find(4L);
+
+		assertEquals(4L, foundUser.getId().longValue());
+		assertEquals("dale@ltcs.com", foundUser.getEmail());
+		assertEquals("pass", foundUser.getPassword());
 	}
 
 	@After

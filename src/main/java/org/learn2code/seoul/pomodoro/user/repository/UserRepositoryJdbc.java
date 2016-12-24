@@ -52,12 +52,75 @@ public class UserRepositoryJdbc implements UserRepository {
 	}
 	@Override
 	public void modify(User user, Long id) {
+		int rows = 0;
+		Connection conn = null;
+		Statement stmt = null;
 
+		try {
+			conn = DriverManager.getConnection(URL);
+			stmt = conn.createStatement();
+			String email = user.getEmail();
+			String password = user.getPassword();
+			String sql = "UPDATE users SET email = '"+ email + "', password = '" + password +"' WHERE " +
+					"id = '"+id+"'";
+			System.out.println(sql);
+			//rows = stmt.executeUpdate("SELECT * FROM users WHERE id ='" + id + "'");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if (rows != 1) {
+			throw new RuntimeException("No data modified");
+		}
 	}
 
 	@Override
 	public void remove(Long id) {
+		int rows = 0;
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			conn = DriverManager.getConnection(URL);
+			stmt = conn.createStatement();
+			rows = stmt.executeUpdate("DELETE FROM users WHERE id ='" + id + "'");
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if (rows != 1) {
+			throw new RuntimeException("No data removed");
+		}
 	}
 
 	@Override

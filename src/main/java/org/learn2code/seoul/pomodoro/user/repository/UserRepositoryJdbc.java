@@ -15,18 +15,21 @@ public class UserRepositoryJdbc implements UserRepository {
 		int rows = 0;
 		Connection conn = null;
 		Statement stmt = null;
+		ResultSet rs = null;
 
 		try {
 			conn = DriverManager.getConnection(URL);
 			stmt = conn.createStatement();
-			long id = user.getId();
 			String email = user.getEmail();
 			String password = user.getPassword();
-			String sql = "INSERT INTO users VALUES ('" + id + "', '" + email + "', '"+ "'"
-					+ password +"');";
+			String sql = "INSERT INTO users VALUES (null, '" + email + "', '" + password +"')";
 			System.out.println(sql);
-			//rows = stmt.executeUpdate("SELECT * FROM users WHERE id ='" + id + "'");
-
+			rows = stmt.executeUpdate(sql);
+			rs = stmt.getGeneratedKeys();
+			if (rs.next()) {
+				long id = rs.getLong(1);
+				user.setId(id);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -64,7 +67,7 @@ public class UserRepositoryJdbc implements UserRepository {
 			String sql = "UPDATE users SET email = '"+ email + "', password = '" + password +"' WHERE " +
 					"id = '"+id+"'";
 			System.out.println(sql);
-			//rows = stmt.executeUpdate("SELECT * FROM users WHERE id ='" + id + "'");
+			rows = stmt.executeUpdate(sql);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -29,8 +29,9 @@ repositories {
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web',
             'org.springframework.boot:spring-boot-starter-actuator',
-            'org.springframework.boot:spring-boot-starter-data-jpa'
-            'org.apache.commons:commons-lang3:3.4'
+            'org.springframework.boot:spring-boot-starter-data-jpa',
+            'org.apache.commons:commons-lang3:3.4',
+            'org.apache.tomcat.embed:tomcat-embed-jasper'
     runtime 'com.h2database:h2:1.4.187',
             'org.postgresql:postgresql:9.4.1208'
     testCompile 'org.springframework.boot:spring-boot-starter-test'

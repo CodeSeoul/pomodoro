@@ -19,7 +19,9 @@
 <hr/>
 
 <form action="/users" method="POST">
+    <label for="email">E-mail</label>
     <input name="email" />
+    <label for="password">Password</label>
     <input name="password" />
     <input type="submit" value="Submit" />
 </form>

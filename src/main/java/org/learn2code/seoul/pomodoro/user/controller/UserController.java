@@ -42,6 +42,11 @@ public class UserController {
 		model.addAttribute("users", users);
 		return "users";
 	}
+	@RequestMapping(value  = "/users/{id}", method = RequestMethod.DELETE)
+	public String deleteUser(@PathVariable Long id){
+		repo.remove(id);
+		return "redirect:users";
+	}
 
 	@RequestMapping("/users/{id}")
 	public String user(Model model, @PathVariable Long id){

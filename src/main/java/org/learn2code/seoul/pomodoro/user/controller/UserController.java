@@ -42,14 +42,24 @@ public class UserController {
 		model.addAttribute("users", users);
 		return "users";
 	}
-	@RequestMapping(value  = "/users/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value  = "/users/{id}/delete", method = RequestMethod.GET)
 	public String deleteUser(@PathVariable Long id){
 		repo.remove(id);
-		return "redirect:users";
+		return "redirect:/users";
 	}
-
-	@RequestMapping("/users/{id}")
-	public String user(Model model, @PathVariable Long id){
+	@RequestMapping(value = "/users/{id}/update", method = RequestMethod.GET)
+	public String updateForm(Model model, @PathVariable Long id){
+		User user = repo.find(id);
+		model.addAttribute(user);
+		return "userUpdate";
+	}
+	@RequestMapping(value="/users/{id}/update", method = RequestMethod.POST)
+	public String submitUpdateForm(@ModelAttribute User user){
+		repo.modify(user, user.getId());
+		return "redirect:/users/" + user.getId();
+	}
+	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+	public String detail(Model model, @PathVariable Long id){
 		System.out.println("id:" + id);
 		User user = repo.find(id);
 		model.addAttribute(user);
@@ -60,7 +70,7 @@ public class UserController {
     public void practice(HttpServletRequest req, HttpServletResponse res) throws IOException {
         res.setStatus(200);
         PrintWriter writer = res.getWriter();
-        writer.write("<!doctype html><body><h1>Users</h1></body></html>");
+        writer.write("<!doctype html><body><h1>This is for practice! XD</h1></body></html>");
     }
 
 	@RequestMapping("/practice1")

@@ -16,9 +16,10 @@
     <li>Password: <%=user.getPassword()%></li>
 </ul>
 
-<form method="DELETE">
+<form method="GET" action="/users/<%=user.getId()%>/delete">
     <input type="hidden" value="<%=user.getId()%>"/>
     <input type="submit" value="delete"/>
+    <a href="/users/<%=user.getId()%>/update">Update</a>
 </form>
 
 </body>

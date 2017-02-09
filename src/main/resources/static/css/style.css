@@ -1,2 +1,32 @@
-*{border: 1px red solid;
+body{
+    background: #D2E9FF;
 }
+
+table, tr{
+    border: 2px black solid;
+    background: #FBFBFB;
+}
+
+h1{
+    text-align: center;
+    font-family: barrio;
+    border: 3px black;
+    font-size: 300%;
+}
+
+td{
+    text-align: center;
+    font: 12px Arial, Helvetica;
+    border: 3px black;
+    font-size: 100%;
+}
+
+form, a{
+    text-align: center;
+    border: 1p solid #C5E2FF;
+    background: #FBFBFB;
+    outline: 0;
+    font: 12px Arial, Helvetica;
+    line-height:15px;
+}
+

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <head>
     <title>User Update</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Barrio" />
 </head>
 <body>
 
@@ -19,6 +21,7 @@
     <input name="password" value="<%=user.getPassword()%>"/>
     <input type="submit" value="Submit" />
 </form>
+<a href="/users">Back</a>
 
 </body>
 

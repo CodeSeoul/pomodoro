@@ -12,19 +12,22 @@
 
 <h1>User Details</h1>
 
-<ul>
-    <li>ID: <%=user.getId()%></li>
-    <li>E-mail: <%=user.getEmail()%></li>
-    <li>Password: <%=user.getPassword()%></li>
-</ul>
+<table align="center">
+    <tr><td>ID: <%=user.getId()%></td>
+    <td>E-mail: <%=user.getEmail()%></td>
+    <td>Password: <%=user.getPassword()%></td>
+</table>
 
-<form method="GET" action="/users/<%=user.getId()%>/delete">
-    <input type="hidden" value="<%=user.getId()%>"/>
-    <input type="submit" value="delete"/>
-    <a href="/users/<%=user.getId()%>/update">Update</a>
+<form style="float:left;padding-left:44%;background: #D2E9FF;" method="GET" action="/users/<%=user.getId()%>/update">
+    <input type="submit" value="Update"/>
 </form>
-<a href="/users">Back</a>
-
+<form style="display:inline;align:center;" method="GET" action="/users/<%=user.getId()%>/delete">
+    <input type="hidden" value="<%=user.getId()%>"/>
+    <input type="submit" value="Delete"/>
+</form>
+<form style="display:inline;"method="GET" action="/users">
+    <input type="submit" value="Back"/>
+</form>
 </body>
 
 </html>

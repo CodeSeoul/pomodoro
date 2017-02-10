@@ -7,7 +7,7 @@ table, tr{
     background: #FBFBFB;
 }
 
-h1{
+h1, ul, li{
     text-align: center;
     font-family: barrio;
     border: 3px black;
@@ -21,12 +21,12 @@ td{
     font-size: 100%;
 }
 
-form, a{
+a{
     text-align: center;
     border: 1p solid #C5E2FF;
     background: #FBFBFB;
     outline: 0;
     font: 12px Arial, Helvetica;
     line-height:15px;
+    display: inline;
 }
-

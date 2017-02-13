@@ -13,7 +13,7 @@
 
 <% User user = (User) request.getAttribute("user"); %>
 
-<form action="/users/<%=user.getId()%>/update" method="POST">
+<form style="float:left;padding-left:33%;background: #D2E9FF;" action="/users/<%=user.getId()%>/update" method="POST">
     <input type="hidden" value="<%=user.getId()%>"/>
     <label for="email">E-mail</label>
     <input name="email" value="<%=user.getEmail()%>"/>
@@ -21,7 +21,9 @@
     <input name="password" value="<%=user.getPassword()%>"/>
     <input type="submit" value="Submit" />
 </form>
-<a href="/users">Back</a>
+<form style="display:inline;" method="GET" action="/users">
+    <input type="submit" value="Back"/>
+</form>
 
 </body>
 

@@ -17,22 +17,31 @@
       <li role="presentation"><a href='#'>Notes</a></li>
     </ul>
   </div>
-  <div class="timer">
-    <h1 id="currentTime">25:00</h1>
-  </div>
-  <div class="text-center">
-  <div class=" btn-group" role="group" aria-label="...">
-    <button id="startBtn" class="btn btn-primary col-xs-4 btn-xlarge">Start
-      <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-    </button>
-    <button id="pauseBtn" class="btn btn-primary col-xs-4 btn-xlarge">Pause
-      <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
-    </button>
-    <button id="stopBtn" class="btn btn-primary col-xs-4 btn-xlarge">Stop
-      <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
-    </button>
-  </div>
-</div>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="timer">
+        <h1 id="currentTime">00:05</h1>
+      </div>
+      <div class="text-center">
+        <div class=" btn-group" role="group" aria-label="...">
+          <button id="startBtn" class="btn btn-primary col-xs-4 btn-xlarge">Start
+            <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+          </button>
+          <button id="pauseBtn" class="btn btn-primary col-xs-4 btn-xlarge">Pause
+            <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+          </button>
+          <button id="stopBtn" class="btn btn-primary col-xs-4 btn-xlarge">Stop
+            <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </div><!-- col-md-9 -->
+    <div class="col-md-3">
+      <div id="pomodoros">
+        0
+      </div>
+    </div><!-- col-md-3 -->
+  </div><!-- row -->
   <script src="./js/util.js"></script>
   <script src="./js/script.js"></script>
 </body>
